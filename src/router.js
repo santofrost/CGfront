@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router'
-import Home from '@/components/Home'
-import Users from '@/components/Users'
-import Favourites from '@/components/Favourites'
+import Home from '@/views/Home'
+import Users from '@/views/Users'
+import Favourites from '@/views/Favourites'
 
 let routes = [
   {

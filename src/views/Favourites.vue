@@ -1,10 +1,5 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <div class="transition-swing text-h1 mt-1 font-weight-regular">
-        Favourites list
-      </div>
-    </v-row>
+  <page title="Favourites lists">
     <v-data-table
       :headers="headers"
       :items="lists"
@@ -27,16 +22,17 @@
       :list="selectedList"
       @close="closeShowList"
     />
-  </v-container>
+  </page>
 </template>
 
 <script>
+import Page from '../components/Page'
 import ShowList from './ShowList'
 
   export default {
-    name: 'Users',
+    name: 'Favourites',
 
-    components: {ShowList},
+    components: {Page, ShowList},
 
     data: () => ({
       showDialog: false,

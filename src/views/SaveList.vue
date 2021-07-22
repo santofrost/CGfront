@@ -5,26 +5,19 @@
       v-model="dialog"
       max-width="600px"
     >
-      <v-card>
-        <v-card-title>
-          <span class="text-h5">Save favourites</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-text-field
-                v-model="listName"
-                label="List name"
-              ></v-text-field>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
+      <dialog-card title="Save favourites">
+        <v-row>
+          <v-text-field
+            v-model="listName"
+            label="List name"
+          />
+        </v-row>
+
+        <template v-slot:card-actions>
           <v-btn
             color="success"
             text
-            @click="$emit('save', listName)"
+            @click="save"
           >
             Save
           </v-btn>
@@ -35,15 +28,19 @@
           >
             Close
           </v-btn>
-        </v-card-actions>
-      </v-card>
+        </template>
+      </dialog-card>
     </v-dialog>
   </v-row>
 </template>
 
 <script>
+import DialogCard from '../components/DialogCard'
+
   export default {
     name: 'ShowUser',
+
+    components: {DialogCard},
 
     props: {
       show: { type: Boolean, required: true }
@@ -61,6 +58,15 @@
     },
 
     methods: {
+      save () {
+        this.$emit('save', this.listName)
+        this.listName = null
+      },
+
+      close () {
+        this.$emit('close')
+        this.listName = null
+      }
     }
   }
 </script>

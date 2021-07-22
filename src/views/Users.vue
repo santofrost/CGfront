@@ -1,9 +1,6 @@
 <template>
-  <v-container>
+  <page title="Users">
     <v-row class="text-center">
-      <div class="transition-swing text-h1 mt-1 font-weight-regular">
-        Users
-      </div>
       <v-col cols="12">
         <v-expansion-panels>
           <v-expansion-panel>
@@ -103,10 +100,11 @@
       @save="saveFavourites"
       @close="closeNewList"
     />
-  </v-container>
+  </page>
 </template>
 
 <script>
+import Page from '../components/Page'
 import ShowUser from './ShowUser'
 import SaveList from './SaveList'
 import Csv from '../mixins/Csv'
@@ -116,7 +114,7 @@ import moment from 'moment'
     name: 'Users',
     mixins: [Csv],
 
-    components: {ShowUser, SaveList},
+    components: {Page, ShowUser, SaveList},
 
     data: () => ({
       showDialog: false,
@@ -196,6 +194,7 @@ import moment from 'moment'
       showUser (item) {
         this.showDialog = true
         this.selectedUser = item
+        this.selectedUser.added = this.selectedUsers.find(selected => selected.login.uuid === item.login.uuid)
       },
 
       closeShowUser () {
